@@ -1,7 +1,7 @@
 graph TD
     User[User] -->|Interacts| UI[UI Components]
     
-    subgraph UI Layer
+    subgraph "UI Layer"
         UI -->|Displays| HomeScreen
         HomeScreen -->|Contains| TaskTile
         HomeScreen -->|Contains| FilterSegments
@@ -9,24 +9,29 @@ graph TD
         HomeScreen -->|Contains| SettingsDialog
     end
     
-    subgraph State Management Provider
+    subgraph "State Management Provider"
         HomeScreen -->|Observes| DataProvider
         HomeScreen -->|Observes| ThemeProvider
         HomeScreen -->|Observes| SettingsProvider
         TaskTile -->|Modifies| DataProvider
     end
     
-    subgraph Service Layer
+    subgraph "Service Layer"
         DataProvider -->|Uses| StorageService
-        AIService -->|Called by| ChatDialog
-        AIService -->|Called by| HomeScreen
-        StorageService -->|Reads/Writes| LocalSys[Local File System]
+        AIService -->|"Called by"| ChatDialog
+        AIService -->|"Called by"| HomeScreen
+        StorageService -->|"Reads/Writes"| LocalSys[Local File System]
     end
     
-    subgraph External & Native
-        ChatDialog -->|Uses| SpeechToText[SpeechToText Plugin]
-        HomeScreen -->|Uses| ImagePicker[ImagePicker Plugin]
+    subgraph "External & Native"
+        ChatDialog -->|"Uses"| SpeechToText[SpeechToText Plugin]
+        HomeScreen -->|"Uses"| ImagePicker[ImagePicker Plugin]
     end
     
     DataProvider -->|Updates| LocalSys
     SettingsProvider -->|Persists| LocalSys
+
+%% Styling für die Layer
+    style "UI Layer" fill:#f9f,stroke:#333,stroke-width:2px
+    style "Service Layer" fill:#bbf,stroke:#333,stroke-width:2px
+    style "Data Layer" fill:#dfd,stroke:#333,stroke-width:2px
