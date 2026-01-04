@@ -9,7 +9,7 @@ graph TD
         HomeScreen -->|Contains| SettingsDialog
     end
     
-    subgraph State Management (Provider)
+    subgraph State Management Provider
         HomeScreen -->|Observes| DataProvider
         HomeScreen -->|Observes| ThemeProvider
         HomeScreen -->|Observes| SettingsProvider
